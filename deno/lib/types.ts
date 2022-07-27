@@ -45,6 +45,7 @@ import {
 export type RefinementCtx = {
   addIssue: (arg: IssueData) => void;
   path: (string | number)[];
+  parent: ParseContext;
 };
 export type ZodRawShape = { [k: string]: ZodTypeAny };
 export type ZodTypeAny = ZodType<any, any, any>;
@@ -3430,6 +3431,9 @@ export class ZodEffects<
       get path() {
         return ctx.path;
       },
+      get parent(){
+        return ctx;
+      }
     };
 
     checkCtx.addIssue = checkCtx.addIssue.bind(checkCtx);
